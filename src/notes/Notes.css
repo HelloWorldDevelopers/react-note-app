@@ -1,0 +1,49 @@
+.header{
+    width: auto;
+    height: 60px;
+     margin-bottom: 10px;
+     display: flex;
+     justify-content: end;
+}
+.allCards{
+    display: flex;
+    margin-left: 100px;
+     flex-direction: row;
+    flex-wrap: wrap;
+}
+.singelCard{
+    padding: 5px;
+}
+.logo{
+    width: 40px;
+    height: 40px;
+    background-size: cover;
+ 
+}
+.userName{
+    padding-top: 15px;
+    margin-left: 10px;
+    padding-right: 15px;
+}
+.logo-po{
+    padding-top: 8px;
+    padding-left: 10px;
+
+ 
+}
+.edit{
+    cursor: pointer;
+    width: 25px;
+    height: 25px;
+}
+.delete{
+    cursor: pointer;
+    width: 25px;
+    height: 25px;
+}
+.date{
+    padding-left: 20px;
+}
+.AddNotes{
+    
+}

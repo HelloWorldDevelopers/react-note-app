@@ -1,0 +1,22 @@
+.App {
+    position: absolute;
+    top: 20%;
+    left: 40%;
+    margin-top: -50px;
+    margin-left: -20px;
+    width: 100px;
+    height: 100px;
+  }
+  .text-box{
+    width:300px;
+    margin-top: 20px;
+  }
+  
+  .link{
+    display: flex;
+    justify-content: center;
+  }
+  body{
+    background-image: url('../assets/back1.jpg');
+    background-size: cover;
+  }
