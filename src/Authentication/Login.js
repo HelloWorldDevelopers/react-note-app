@@ -1,31 +1,42 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import   './Login.css'
-import { useState } from 'react';
+import { useEffect,useState} from 'react';
 import { Link } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
  
+  import { useNavigate } from "react-router-dom"
+
 function Login() {
 
 const[loginDetails,setLoginDetails]=useState({})
- 
+ useEffect(()=>{
+     
+})
+const navigate = useNavigate()
+
 function loginHere(){
-    toast.warn(' password and username not valid!');
     fetch("http://localhost:8080/api/v1/authenticate/signin", {
         method: "POST",
-        headers: {
+        headers: {        
             "Content-Type": "application/json",
         },
         body: JSON.stringify(loginDetails)
     })
     .then((res) => res.json())
     .then((res) => {
-       if(!res.token){
-        
+         if(!res.token){
+             setLoginDetails({})
+             toast.warn(' password and username not valid!');
+             
+        }else{
+            console.log(res.userId);
+            debugger;
+            sessionStorage.setItem("token",res.token)
+            sessionStorage.setItem("userId",res.userId)
+            navigate("/allNotes")
         }
-        console.log(res.token);
-        
     })
     .catch((error) => {
         console.error('Error:', error);
@@ -49,15 +60,14 @@ pauseOnFocusLoss
 draggable
 pauseOnHover
 theme="dark"
-
  />
 
   <div className="text-box"  >
-  <input className="form-control form-control-sm text-box" name="username" onChange={setValue} type="text" placeholder="username" aria-label=".form-control-sm example"/>
+  <input className="form-control form-control-sm text-box" name="email" onChange={setValue} type="email" placeholder="username" aria-label=".form-control-sm example"/>
 
   </div>
   <div className="text-box" >
-  <input className="form-control form-control-sm text-box" password="password" onChange={setValue} type="text" placeholder="password" aria-label=".form-control-sm example"/>
+  <input className="form-control form-control-sm text-box" name="password" type="password" onChange={setValue}  placeholder="password" aria-label=".form-control-sm example"/>
    </div>
  
       
