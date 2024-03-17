@@ -31,10 +31,11 @@ function loginHere(){
              toast.warn(' password and username not valid!');
              
         }else{
-            console.log(res.userId);
-            debugger;
+             debugger;
             sessionStorage.setItem("token",res.token)
             sessionStorage.setItem("userId",res.userId)
+            sessionStorage.setItem("fullName",res.fullName)
+
             navigate("/allNotes")
         }
     })
