@@ -1,43 +1,37 @@
 import React, { useState } from "react";
 import "./Login.css";
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
 
 function Register() {
-  const [loginDetails, setLoginDetails] = useState({});
-  const [profile, setProfile] = useState(null)
-
+  const [register, setRegister] = useState({});
+ 
   const [loginStatus, setLoginStatus] = useState(false);
+  const navigate = useNavigate()
+  
 
-  function profileUpload(e){
-    setProfile(e.target.files[0])
-    console.log(profile)
-  }
-
-  function loginHere() {
-    setLoginDetails({
-      profile:profile
-    })
-    console.log(loginDetails);
-    // fetch("http://localhost:8080/api/v1/authenticate/signup", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(loginDetails),
-    // })
-    //   .then((res) => res.json())
-    //   .then((res) => {
-    //     if (!res.token) {
-    //       setLoginStatus(true);
-    //     }
-    //     console.log(res.token);
-    //   })
-    //   .catch((error) => {
-    //     console.error("Error:", error);
-    //   });
+   
+    function loginHere(){
+      fetch("http://localhost:8080/api/v1/authenticate/singup", {
+          method: "POST",
+          headers: {        
+              "Content-Type": "application/json",
+          },
+          body: JSON.stringify(register)
+      })
+      .then((res) => res.json())
+      .then((res) => {
+           
+              navigate("/allNotes")
+          
+      })
+      .catch((error) => {
+          console.error('Error:', error);
+      });
+   
+  
   }
   function setValue(e) {
-    setLoginDetails({ ...loginDetails, [e.target.name]: e.target.value });
+    setRegister({ ...register, [e.target.name]: e.target.value });
   }
   return (
     <div className="App">
@@ -93,7 +87,7 @@ function Register() {
       </div>
     <div className="text-box">
     <div class="mb-3">
-   <input onChange={profileUpload} name="profile" class="form-control form-control-sm" id="formFileSm" type="file"/>
+   <input  name="profile" class="form-control form-control-sm" id="formFileSm" type="file"/>
 </div>
     </div>
       <div className="text-box">
